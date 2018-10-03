@@ -1,0 +1,22 @@
+
+<ul class="list">
+  <li *ngFor="let server of services$ | async" >
+
+    <h3 class="pointer link" (click)="server.isOpen = !server.isOpen" title="click to show services">
+      <span>{{server.hostname}}</span>
+      <span>({{server.services.length}})</span>
+    </h3>
+    <ul class="list" [class.dn]="!server.isOpen">
+      <li>
+        <div class="fl w-33 pa2">Service</div>
+        <div class="fl w-33 pa2">Port</div>
+        <div class="fl w-33 pa2">Protocol</div>
+      </li>
+      <li *ngFor="let service of server.services" title="{{service | json}}">
+        <div class="fl w-33 pa2">{{service.type}}</div>
+        <div class="fl w-33 pa2">{{service.port}}</div>
+        <div class="fl w-33 pa2">{{service.protocol}}</div>
+      </li>
+    </ul>
+  </li>
+</ul>
